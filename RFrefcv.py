@@ -17,7 +17,7 @@ for i in csvdata.columns:
 
 data = np.array(csvdata)
 
-#分割训练集合测试集  X第二列往后所有数据  y第一列所有数据
+#分Split the training set Test set X all data from the second column y all data from the first column
 X = data[:,1:]
 y = data[:,0]
 
@@ -65,7 +65,7 @@ for f in range(X.shape[1]):
 rfecv = RFECV(estimator=forest, step=1, cv=StratifiedKFold(5),scoring='accuracy')
 rfecv.fit(X, y)
 # #
-#rfecv.n_features_：具有交叉验证的选定特征的数量
+#rfecv.n_features_：The number of selected features with cross-validation
 print("Optimal number of features（最佳特征数） : %d" % rfecv.n_features_)
 #rfecv.ranking_：特征排名
 print("Ranking of features（特征排名） : %s" % rfecv.ranking_)
@@ -83,5 +83,5 @@ plt.show()
 result = pd.DataFrame([feat_labels,importances,a,b])
 #
 print(result)
-#保存结果
+#Save the result
 result.to_csv(r"D:\studysoft\python_project\paper2_RFE\10011.csv")
